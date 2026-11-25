@@ -1,0 +1,36 @@
+---
+layout: default
+---
+{%- comment -%}
+  Overrides minima's home layout: the same page, but the posts are listed in story order
+  (Part 1 first, by the `part` number in each post's front matter) instead of newest first,
+  and without dates.
+{%- endcomment -%}
+<div class="home">
+  {{ content }}
+
+  {%- assign parts = site.posts | sort: "part" -%}
+  {%- if parts.size > 0 -%}
+    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
+    <ul class="post-list">
+      {%- for post in parts -%}
+      {%- capture collage -%}/assets/collages/part{{ post.part }}.jpg{%- endcapture -%}
+      <li class="part">
+        <a class="part-collage" href="{{ post.url | relative_url }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ collage | relative_url }}" alt="" loading="lazy">
+        </a>
+        <div class="part-text">
+          <h3>
+            <a class="post-link" href="{{ post.url | relative_url }}">
+              {{ post.title | escape }}
+            </a>
+          </h3>
+          {%- if site.show_excerpts -%}
+            {{ post.excerpt }}
+          {%- endif -%}
+        </div>
+      </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</div>

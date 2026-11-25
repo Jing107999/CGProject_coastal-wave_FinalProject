@@ -1,0 +1,23 @@
+# GitHub Pages site for the project's process blog (and, later, the report and video).
+# Built by GitHub Pages' own Jekyll; no build step needed on our side.
+title: Coastal Wave–Rock Interaction
+description: >-
+  A process blog: storm waves breaking against a sea cliff, built in Unity (URP).
+  What I tried, what broke, and the numbers I tried before the final ones.
+url: https://jing107999.github.io
+baseurl: /CGProject_coastal-wave_blog
+
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Posts live at /blog/part-N/ (set per post with `permalink`).
+show_excerpts: true
+header_pages:
+  - index.md

@@ -1,0 +1,19 @@
+---
+layout: default
+---
+{%- comment -%}
+  Overrides minima's post layout: the same page without the date line under the title.
+  (Jekyll still needs a date in each post's file name; it just isn't shown.)
+{%- endcomment -%}
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+</article>

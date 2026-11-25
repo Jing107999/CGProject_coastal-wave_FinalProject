@@ -1,0 +1,35 @@
+---
+# Front matter (even empty) makes Jekyll compile this file. It replaces minima's own main.scss:
+# the theme's styles first, then the home page's part collages.
+---
+
+@import "minima";
+
+// Home page: each part has a collage of four screenshots (first step top-left) beside its link.
+.post-list li.part {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+
+.part-collage {
+  flex: 0 0 240px;
+
+  img {
+    display: block;
+    width: 100%;
+    border-radius: 4px;
+  }
+}
+
+.part-text {
+  flex: 1;
+  min-width: 0;   // lets long titles wrap instead of pushing the row wider than the page
+}
+
+// Phones: the collage goes above the text, full width.
+@media (max-width: 600px) {
+  .post-list li.part { flex-direction: column; gap: 10px; }
+  .part-collage { flex-basis: auto; width: 100%; }
+}
