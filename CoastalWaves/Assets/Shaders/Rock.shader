@@ -7,7 +7,7 @@
 // Three passes:
 //   1. "Rock"         the visible surface
 //   2. "ShadowCaster" so the cliff casts shadows (onto the water and itself)
-//   3. "DepthOnly"    so the depth texture contains the cliff (shallow-water colour later)
+//   3. "DepthOnly"    so the depth texture contains the cliff (soft spray particles fade where they touch it)
 
 Shader "Coastal/Rock"
 {
@@ -49,7 +49,7 @@ Shader "Coastal/Rock"
         CBUFFER_END
 
         // S4.4: white water on the face, published by RunupSystem (u = z, v = y). All 0 = none yet.
-        // S4.6: R = water film (drawn as drips), G = wetness (darkens the stone).
+        // S4.6: R = water film (only shown in the debug view; the drips were removed), G = wetness (darkens the stone).
         TEXTURE2D(_RunupTex); SAMPLER(sampler_RunupTex);
         float4 _RunupRect;   // (zMin, yMin, 1 / z size, 1 / y size)
         TEXTURE2D(_DripTex); SAMPLER(sampler_DripTex);

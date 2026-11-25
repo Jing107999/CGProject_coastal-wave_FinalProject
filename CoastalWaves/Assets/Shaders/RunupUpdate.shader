@@ -2,7 +2,7 @@
 //
 // The map lies on the cliff face: u = coast position z, v = height y (both world metres via
 // _MapRect). Two channels (S4.6: wet rock):
-//   R = water film running down the stone (short-lived, drains) -> drawn as drips by Rock.shader
+//   R = water film running down the stone (short-lived, drains) -> keeps the stone wet (G below)
 //   G = wetness of the stone (dries slowly, never below R)       -> darkens the rock
 // One step for R:
 //

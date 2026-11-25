@@ -149,7 +149,8 @@ Shader "Coastal/Water"
                                : lerp(half3(1.0, 0.85, 0.1), half3(0.9, 0.1, 0.05), x * 2.0 - 1.0);
             }
 
-            // How much foam lies at this world position (0 outside the foam map).
+            // How much foam lies at this position (0 outside the foam map). Callers pass the REST
+            // position (S5.2); the parameter name is from the first version.
             float SampleFoam(float2 worldXZ)
             {
                 float2 uv = (worldXZ - _FoamRect.xy) * _FoamRect.zw;
@@ -284,8 +285,8 @@ Shader "Coastal/Water"
                 // the bias (0.55 = theoretical limit; default 0.71 = calibrated to observed coverage).
                 float crest = saturate((_CrestFoamBias - g.jacobian) * _CrestFoamStrength);
 
-                // S4.10f: the map foam (impacts, trails) is drawn through the patch pattern; the thin
-                // contact line and the crest foam stay as they were.
+                // With _FoamLaceAll off: only the map foam (impacts, trails) goes through the patch
+                // pattern; the contact band and the crest foam are drawn plain. The default (on) is below.
                 float pattern = FoamPattern(input.restXZ, _SimTime);
                 float mapFoam = PatchedCoverage(saturate(foamDrawn * _FoamGain), pattern);
                 float coverage = saturate(max(max(mapFoam, contact * _ContactFoamStrength), crest));
@@ -313,8 +314,8 @@ Shader "Coastal/Water"
         }
 
         // ---------------------------------------------------------------
-        // Pass 2: depth only. URP uses it to fill the depth texture, so later
-        // effects (shallow colour, contact foam) see the WAVES, not the flat grid.
+        // Pass 2: depth only. URP uses it to fill the depth texture, so effects that read it
+        // (the soft spray particles) see the WAVES, not the flat grid.
         // ---------------------------------------------------------------
         Pass
         {

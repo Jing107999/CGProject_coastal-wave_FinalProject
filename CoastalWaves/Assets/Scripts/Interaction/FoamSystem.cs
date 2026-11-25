@@ -404,7 +404,7 @@ namespace Coastal
         void OnGUI()
         {
             if (!showPreview || current == null) return;
-            // Keep the map's shape (100 x 260 m -> tall and narrow); u = world X to the right, v = world Z up.
+            // Keep the map's shape (100 x 400 m -> tall and narrow); u = world X to the right, v = world Z up.
             float h = Mathf.Min(320f, Screen.height * 0.45f);
             float w = h * worldSize.x / worldSize.y;
             var rect = new Rect(Screen.width - w - 10f, Screen.height - h - 10f, w, h);

@@ -10,9 +10,9 @@ namespace Coastal
     /// same time value, or the waves we detect and the waves we see drift apart.
     ///
     /// WHAT: this component owns the simulation time, advances it once per frame,
-    /// publishes it to every shader as the global property "_SimTime", and (in
-    /// later steps) updates the other systems in a fixed order:
-    /// waves -> wave-break detector -> foam.
+    /// publishes it to every shader as the global property "_SimTime", and updates
+    /// the other systems in a fixed order:
+    /// waves -> wave-break detector -> foam -> run-up.
     ///
     /// HOW: Update() measures the frame time, clamps it, scales it, and calls
     /// Step(dt). Step() is public so an offline tool can also drive the clock

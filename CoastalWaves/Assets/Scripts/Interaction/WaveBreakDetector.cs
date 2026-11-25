@@ -254,7 +254,7 @@ namespace Coastal
                 Debug.Log(Tag + $"break at probe {index} (z = {p.position.z:F1}) t = {t:F2} s, peak {p.peak:F2} m, " +
                           $"exposure {exposure:F2}, intensity {intensity:F2}", this);
 
-            WaveBreak?.Invoke(e);   // tell every subscriber (none yet: foam comes in S3)
+            WaveBreak?.Invoke(e);   // tell every subscriber (foam, run-up and spray)
         }
 
         // ---------------------------------------------------------------
