@@ -5,7 +5,7 @@ description: >-
   A process blog: storm waves breaking against a sea cliff, built in Unity (URP).
   What I tried, what broke, and the numbers I tried before the final ones.
 url: https://jing107999.github.io
-baseurl: /CGProject_coastal-wave_blog
+baseurl: /CGProject_coastal-wave_FinalProject
 
 theme: minima
 plugins:

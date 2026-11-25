@@ -2,7 +2,7 @@
 
 DH2323 project (KTH): storm waves hitting a sea cliff in Unity, with wave-break detection and foam that fades over time.
 
-Blog: https://jing107999.github.io/CGProject_coastal-wave_blog/
+Blog: https://jing107999.github.io/CGProject_coastal-wave_FinalProject/
 
 ## How to run
 
