@@ -1,12 +1,15 @@
 # Textures from Unity's Shader Graph samples
 
-`rain_drips.png` and `rain_drips_mask.png` are copied unchanged from the **Shader Graph "Production Ready Shaders" sample** (package `com.unity.shadergraph` 17.6.0, `Weather/Rain/Textures`), © Unity Technologies, licensed under the **Unity Companion License** (https://unity.com/legal/licenses/unity-companion-license).
+The four textures in this folder are copied unchanged from the **Shader Graph "Production Ready Shaders" sample** (package `com.unity.shadergraph` 17.6.0), © Unity Technologies, licensed under the **Unity Companion License** (https://unity.com/legal/licenses/unity-companion-license).
 
-- `rain_drips.png`: R, G = drip normal (x, y); **B = drip channel mask**; **A = per-drip time offset**.
-- `rain_drips_mask.png`: a 1-D pattern that is scrolled down over time to animate the drips.
+## Spray textures (in use)
 
-How we use them (our own code, `Shaders/Rock.shader`): the drip logic of Unity's `Rain_Drips` subgraph, ported to HLSL: `drip = mask(y·tile + speed·(t + A)).r · B`, speed = lerp(lerp(0.2, 0.03, P), lerp(0, 0.0125, P), A) for permeability P. The wet darkening follows Unity's `Wet` subgraph: wet colour = saturate(saturation(albedo, 1.5)) · 0.2, blended by saturate(P · wetness).
+`cloud.png` (soft cloud puff) and `water_churn_8x4.png` (an 8 × 4 flipbook of churning water) come from the sample's `Common/Textures` folder. Unity uses them for its `WaterfallMist` and `WaterfallSplash` materials. We draw them with URP's built-in **Particles/Unlit** shader (soft particles, flipbook via the Texture Sheet Animation module) on Unity's standard particle system, driven by our wave-break events (`Scripts/Interaction/SprayEmitter.cs`).
 
-## Particle textures (S4.6b)
+## Rain-drip textures (no longer used)
 
-`cloud.png` (soft cloud puff) and `water_churn_8x4.png` (an 8 × 4 flipbook of churning water) are copied unchanged from the same sample's `Common/Textures` folder (Unity Companion License). Unity uses them for its `WaterfallMist` and `WaterfallSplash` materials. We draw them with URP's built-in **Particles/Unlit** shader (soft particles, flipbook via the Texture Sheet Animation module) on Unity's standard particle system, driven by our wave-break events (`Scripts/Interaction/SprayEmitter.cs`).
+`rain_drips.png` and `rain_drips_mask.png` come from the sample's `Weather/Rain/Textures` folder. We used them for a while to draw water drips running down the wet rock, with the drip logic of Unity's `Rain_Drips` subgraph ported to HLSL in `Shaders/Rock.shader`. The effect was later removed: at viewing distance the thin drips showed as rows of short white ticks rather than water. The files stay here because `Rock.mat` still references them.
+
+## Wet rock (formula only, no texture)
+
+The wet darkening in `Shaders/Rock.shader` follows Unity's `Wet` subgraph from the same sample: wet colour = saturate(saturation(albedo, 1.5)) · 0.2, blended by saturate(permeability · wetness).
